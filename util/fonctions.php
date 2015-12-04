@@ -5,10 +5,10 @@
 function verifuser($login, $mdp)
 {
     $tab =  GetLesUsers();
-    $user = "";
+    $user = array();
     foreach($tab as $unUser){
         if($unUser['user']==$login && $unUser['mdp']==$mdp){
-            $user = $unUser['id'];
+            $user = $unUser;
          }
     }
         
@@ -16,7 +16,7 @@ function verifuser($login, $mdp)
 }
 function estConnecte()
 {
-    return isset($_SESSION['id']);
+    return isset($_SESSION['user']);
 }
 
 
@@ -186,9 +186,10 @@ function getOffreArriveeEntreprise($id){
 /* retourne la liste des inscrits*/
 function GetLesUsers(){
     $tab=array( 
-                array("id"=>"c1","user"=>"jdurand","mdp"=>"aaaa","adresse"=>"75020 place Gambetta"),
-                array("id"=>"c2","user"=>"dduval","mdp"=>"bbbb","adresse"=>"93100 mairie de Montreuil"),
-                array("id"=>"c3","user"=>"lahmad","mdp"=>"cccc","adresse"=>"93000 Métro Bobigny")
+                array("id"=>"c1","user"=>"jdurand","mdp"=>"aaaa","adresse"=>"75020 place Gambetta","mail"=>"durand@gmail.com"),
+                array("id"=>"c2","user"=>"dduval","mdp"=>"bbbb","adresse"=>"93100 mairie de Montreuil","mail"=>"duval@gmail.com"),
+                array("id"=>"c3","user"=>"lahmad","mdp"=>"cccc","adresse"=>"93000 Métro Bobigny","mail"=>"ahmad@gmail.com"),
+                array("id"=>"c4","user"=>"pgrand","mdp"=>"cccc","adresse"=>"93000 Métro Bobigny","mail"=>"patricegrand@free.fr")
             );
    return $tab;
 }
@@ -209,5 +210,16 @@ function getMesOffresArriveeEntreprise($id){
                 $lesOffres[] = $uneOffre;
     return $lesOffres;    
 }
-
+function getUser($login){
+    $tab =  GetLesUsers();
+    $user = array();
+    foreach($tab as $unUser){
+        if($unUser['user']==$login ){
+            $user = $unUser;
+         }
+    }
+        
+    return $user;
+    
+}
 ?>
