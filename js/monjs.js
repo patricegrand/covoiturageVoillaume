@@ -303,9 +303,18 @@ $(function(){
                             alert("offre bien enregistrée");
                 }
                     
-     
-      
-    
+                                /*page demande de mot de passe*/
+                                
+      $('#btnvaliderdemandemdp').click( function(e) {
+              var login = $("#loginDemandeMdp").val();
+             $.post("ajax/traiterdemandemdp.php",{"login" : login}, foncRetourValiderDemandeMdp );
+      }); 
+       function foncRetourValiderDemandeMdp(data){
+            if(data){
+                  alert("Le mail vient d'être envoyé");
+                  $.mobile.changePage("#pageconnexion");
+              }
+       }
 }); // fin fonction principale/* 
 
 
