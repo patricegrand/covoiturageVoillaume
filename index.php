@@ -7,6 +7,7 @@
  include "vues/pageoffre.php";
  include "vues/pagegerermesoffres.php";
  include "vues/pageajouteroffre.php";
+ include "vues/pagedemandemdp.php";
 ?>
 </body>
 </html>
