@@ -18,8 +18,10 @@ for($i= 1;$i<=4;$i++){
      $mdp=$mdp.chr($n);
 }
 
+$s = " login : ".$login."<br>Mot de passe : ".$mdp. "Retenez bien votre mot de passe";
+$s.= "<br>Adresse :".$adresse."<br>mail : ".$mail;
+$s.="<br>Téléphone : ".$tel."<br>Merci de votre visite et à bientôt";
 
 
-
-echo " login : ".$login."<br>Mot de passe : ".$mdp."<br>Adresse :".$adresse."<br>Merci de votre visite et à bientôt";
+echo $s;
 ?>
