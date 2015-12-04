@@ -9,6 +9,7 @@ include "vues/logo.html";
         <input type="text" name="login" id="login" value="" />
         <label for="login">Mot de passe </label>
         <input type="password" name="mdp" id="mdp" value="" />
+        <a href="#pagedemandemdp"  data-mini="true" data-inline="true">Mot de passe oublié</a> 
      </div>
    <div id="message" data-theme="e"></div>
      <p>
