@@ -92,7 +92,7 @@ $(function(){
                 var idBouton = $(this).attr("id");
                 var paramAjax = "arriveedomicile";
                 if(idBouton == "offresarrivee" )
-                    paramAjax = "arriveeentreprise";
+                    paramAjax = "arriveelycee";
                 $.post("ajax/traiterlesoffres.php",{
                     "typeoffre" : paramAjax
                  },
@@ -118,13 +118,13 @@ $(function(){
                     }
                     html = "<li id=" + lesOffres[i]['id']+" ><a href =#pageoffre >";
                     $("#pageoffresoffertes #lstoffres" + n).append(html);
-                    if(lesOffres[i]['ramassage']){
-                        html = lesOffres[i]['date'] + " à "+ lesOffres[i]['heure']+" départ de <br>"+ lesOffres[i]['depart']+"</a></li>";
-                        $("#pageoffresoffertes #"+lesOffres[i]['id']).attr("title","arriveeentreprise");  
+                    if(lesOffres[i]['depart'] == "domicile"){
+                        html = lesOffres[i]['date'] + " à "+ lesOffres[i]['heure']+" départ de <br>"+ lesOffres[i]['lieu']+"</a></li>";
+                        $("#pageoffresoffertes #"+lesOffres[i]['id']).attr("title","arriveelycee");  
                     }
                     else{
-                        html = lesOffres[i]['date'] + " à "+ lesOffres[i]['heure']+" arrivée à <br>"+ lesOffres[i]['retour']+"</a></li>";
-                        $("#pageoffresoffertes #"+lesOffres[i]['id']).attr("title","arriveedomicile"); 
+                        html = lesOffres[i]['date'] + " à "+ lesOffres[i]['heure']+" arrivée à <br>"+ lesOffres[i]['lieu']+"</a></li>";
+                       $("#pageoffresoffertes #"+lesOffres[i]['id']).attr("title","arriveedomicile"); 
                     }
                     $("#pageoffresoffertes li#"+lesOffres[i]['id']+">a").append(html);
                 }
@@ -146,25 +146,23 @@ $(function(){
               $("#pageoffre #ramassage").empty();
            
               var nom = data["nom"];
-              var lieu;
-              if(data["depart"])
-                  lieu = data["depart"];
-              else
-                  lieu = data["retour"];
+              var lieu = data["lieu"];
               var prenom = data["prenom"];
               var numeroTel = data["tel"];
               var mail = data["mail"];
               var html="";
-              $("#pageoffre #nom").html(nom);
-              $("#pageoffre #prenom").html(prenom);
-              if(data["ramassage"]){
-                    var tabRamassage=data["ramassage"];
+              $("#pageoffre #nomprenom").html(nom + "  " + prenom);
+              $("#pageoffre #lieu").html(lieu);
+              if(data["ramassage1"]){
+                    var ramassage1 = data["ramassage1"];
                     html ="<br>Etape(s)possible(s) sur le trajet : <ul>";
-                    for(var etape in tabRamassage){
-                        html+="<li>"+tabRamassage[etape]['lieu']+"</li>";
+                    html += "<li>" + ramassage1 +"</li>";
+                    if(data["ramassage2"]){
+                        var ramassage2 = data["ramassage2"];
+                        html += "<li>" + ramassage2 +"</li>";
                     }
                     html+="</ul>";
-                    $("#pageoffre #ramassage").html(html);
+                $("#pageoffre #ramassage").html(html);
                 }
                 $("#pageoffre #tel").attr("href","tel:"+numeroTel);
                 $("#pageoffre #mail").attr("href","mailto:"+mail);
@@ -200,19 +198,19 @@ $(function(){
              });
           function foncRetourMesOffres(data){
                 $.mobile.changePage("#pagegerermesoffres");
-                var lesOffresDepartEntreprise = data['departentreprise'];
-                var lesOffresArriveeEntreprise = data['arriveeentreprise'];
+                var lesOffresDepartLycee = data['departlycee'];
+                var lesOffresArriveeLycee = data['arriveelycee'];
                 $("#listdepart").empty();
-                for(var i = 0; i < lesOffresDepartEntreprise.length; i++){
-                    var uneOffre = lesOffresDepartEntreprise[i];
+                for(var i = 0; i < lesOffresDepartLycee.length; i++){
+                    var uneOffre = lesOffresDepartLycee[i];
                     var legende = uneOffre['jour'] + "   " + uneOffre['date'] + "   " + uneOffre['heure'];  
                     var html = "<input  id=" + uneOffre['id'] + " type=checkbox data-theme=b>";
                     html+="<label  for=" + uneOffre['id'] + " data-theme=b> "+ legende +"</label>";
                     $("#listdepart").append(html);
                 }
                 $("#listarrivee").empty();
-                for( i = 0; i < lesOffresArriveeEntreprise.length; i++){
-                     uneOffre = lesOffresArriveeEntreprise[i];
+                for( i = 0; i < lesOffresArriveeLycee.length; i++){
+                     uneOffre = lesOffresArriveeLycee[i];
                      legende = uneOffre['jour'] + "   " + uneOffre['date'] + "   " + uneOffre['heure'];  
                      html = "<input  id=" + uneOffre['id'] + " type=checkbox data-theme=b>";
                     html+="<label  for=" + uneOffre['id'] + " data-theme=b> "+ legende +"</label>";

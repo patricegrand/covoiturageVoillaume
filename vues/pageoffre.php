@@ -4,8 +4,8 @@ include "vues/entetepageavecboutonretour.html";
 ?>
 <div data-role="content" id="contenu" >  
          <ul data-role ="listview" id="list" >
-             <li id="nom">                       </li>
-             <li id="prenom">                    </li>
+             <li id="nomprenom">                       </li>
+             <li id="lieu">                    </li>
              <li id="ramassage">                 </li>  
          </ul>
          <a href="" data-role="button" data-icon="grid"   id="tel"  data-inline="true" data-mini="true">Appeler</a>

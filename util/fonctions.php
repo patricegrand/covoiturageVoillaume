@@ -21,7 +21,7 @@ function estConnecte()
 
 
 // retourne un tableau trié sur les jours de la semaine croissants
-function getLesOffresDepartEntreprise()
+function getLesOffresDepartLycee()
 {
     $tab=array(
                 array("id"=>1,
@@ -29,7 +29,8 @@ function getLesOffresDepartEntreprise()
                        "jour"=>"mardi",
                        "date"=>"permanent",
                        "heure"=>"15h",
-                       "retour"=>"place gambetta Paris 20",
+                    "depart"=>"lycee", 
+                       "lieu"=>"place gambetta Paris 20",
                        "nom"=>"Durand",
                        "prenom"=>"Jean",
                        "mail"=>"durand@gmail.com",
@@ -39,7 +40,8 @@ function getLesOffresDepartEntreprise()
                        "jour"=>"mardi",
                        "date"=>"15/02/2014",
                         "heure"=>"16h",
-                       "retour"=>"Métro Robespierre",
+                    "depart"=>"lycee", 
+                       "lieu"=>"Métro Robespierre",
                      "nom"=>"Duval",
                        "prenom"=>"Anne",
                      "mail"=>"duval@gmail.com",
@@ -49,7 +51,8 @@ function getLesOffresDepartEntreprise()
                        "jour"=>"mercredi",
                        "date"=>"26/02/2014",
                         "heure"=>"17h30",
-                       "retour"=>"Mairie de Bobigny",
+                    "depart"=>"lycee", 
+                       "lieu"=>"Mairie de Bobigny",
                      "nom"=>"Ahmad",
                        "prenom"=>"Louise",
                      "mail"=>"ahmad@gmail.com",
@@ -59,7 +62,8 @@ function getLesOffresDepartEntreprise()
                        "jour"=>"mercredi",
                        "date"=>"permanent",
                         "heure"=>"17h",
-                       "retour"=>"place gambetta Paris 20",
+                        "depart"=>"lycee", 
+                       "lieu"=>"place gambetta Paris 20",
                         "nom"=>"Durand",
                        "prenom"=>"Jean",
                       "mail"=>"durand@gmail.com",
@@ -69,7 +73,8 @@ function getLesOffresDepartEntreprise()
                        "jour"=>"vendredi",
                        "date"=>"28/02/2014",
                         "heure"=>"17h30",
-                       "retour"=>"Métro Robespierre",
+                    "depart"=>"ycee", 
+                       "lieu"=>"Métro Robespierre",
                      "nom"=>"Duval",
                        "prenom"=>"Anne",
                         "mail"=>"duval@gmail.com",
@@ -79,7 +84,8 @@ function getLesOffresDepartEntreprise()
                        "jour"=>"vendredi",
                        "date"=>"permanent",
                         "heure"=>"15h30",
-                       "retour"=>"Mairie de Bobigny",
+                    "depart"=>"lycee", 
+                       "lieu"=>"Mairie de Bobigny",
                     "nom"=>"Ahmad",
                        "prenom"=>"Louise",
                      "mail"=>"ahmad@gmail.com",
@@ -90,8 +96,8 @@ function getLesOffresDepartEntreprise()
     
 }
 
-function getOffreDepartEntreprise($id){
-    $lesOffres = getLesOffresDepartEntreprise();
+function getOffreDepartLycee($id){
+    $lesOffres = getLesOffresDepartLycee();
     $offre=array();
     foreach ($lesOffres as $uneOffre){
             if($uneOffre["id"]==$id)
@@ -99,15 +105,17 @@ function getOffreDepartEntreprise($id){
     }
     return $offre;
 }
-function getLesOffresArriveeEntreprise(){
+function getLesOffresArriveeLycee(){
     $tab=array(
                 array("id"=>7,
                         "idchauffeur"=>"c1",
                        "jour"=>"lundi",
                        "date"=>"permanent",
                        "heure"=>"8h",
-                       "ramassage"=> array(array("id"=>1,"lieu"=>"Paris porte des lilas"),array("id"=>2,"lieu"=>"Paris porte de bagnolet")),
-                       "depart"=>"place gambetta Paris 20",
+                        "depart"=>"domicile", 
+                       "ramassage1"=> "Paris porte des lilas",
+                       "ramassage2"=>"Paris porte de bagnolet",
+                       "lieu"=>"place gambetta Paris 20",
                        "nom"=>"Durand",
                        "prenom"=>"Jean",
                         "mail"=>"durand@gmail.com",
@@ -117,8 +125,10 @@ function getLesOffresArriveeEntreprise(){
                        "jour"=>"mardi",
                        "date"=>"15/02/2014",
                         "heure"=>"9h",
-                      "ramassage"=> array(array("id"=>1,"lieu"=>"Paris porte des lilas"),array("id"=>2,"lieu"=>"Paris porte de bagnolet")),
-                       "depart"=>"place gambetta Paris 20",
+                    "depart"=>"domicile", 
+                      "ramassage1"=>"Paris porte des lilas",
+                      "ramassage2"=>"Paris porte de bagnolet",
+                       "lieu"=>"place gambetta Paris 20",
                      "nom"=>"Durand",
                        "prenom"=>"Jean",
                      "mail"=>"durand@gmail.com",
@@ -128,8 +138,10 @@ function getLesOffresArriveeEntreprise(){
                        "jour"=>"mardi",
                        "date"=>"26/02/2014",
                         "heure"=>"7h30",
-                      "ramassage"=> array(array("id"=>1,"lieu"=>"Montreuil Mairie"),array("id"=>2,"lieu"=>"Montreuil Place Villiers")),
-                       "depart"=>"Métro Robespierre",
+                    "depart"=>"domicile", 
+                      "ramassage1"=>"Montreuil Mairie",
+                    "ramassage2"=>"Montreuil Place Villiers",
+                       "lieu"=>"Métro Robespierre",
                      "nom"=>"Duval",
                        "prenom"=>"Anne",
                         "mail"=>"duval@gmail.com",
@@ -139,8 +151,10 @@ function getLesOffresArriveeEntreprise(){
                        "jour"=>"mercredi",
                        "date"=>"permanent",
                         "heure"=>"8h",
-                          "ramassage"=> array(array("id"=>1,"lieu"=>"Montreuil mairie"),array("id"=>2,"lieu"=>"Montreuil Place Villiers")),
-                       "depart"=>"Métro Robespierre",
+                    "depart"=>"domicile", 
+                          "ramassage1"=>"Montreuil mairie",
+                    "ramassage2"=>"Montreuil Place Villiers",
+                       "lieu"=>"Métro Robespierre",
                      "nom"=>"Duval",
                        "prenom"=>"Anne",
                         "mail"=>"duval@gmail.com",
@@ -150,8 +164,10 @@ function getLesOffresArriveeEntreprise(){
                        "jour"=>"vendredi",
                        "date"=>"28/02/2014",
                         "heure"=>"7h30",
-                       "ramassage"=> array(array("id"=>1,"lieu"=>"Paris porte des lilas"),array("id"=>2,"lieu"=>"Paris porte de bagnolet")),
-                       "depart"=>"place gambetta Paris 20",
+                    "depart"=>"domicile", 
+                       "ramassage1"=>"Paris porte des lilas",
+                    "ramassage2"=>"Paris porte de bagnolet",
+                       "lieu"=>"place gambetta Paris 20",
                      "nom"=>"Durand",
                        "prenom"=>"Jean",
                          "mail"=>"durand@gmail.com",
@@ -161,8 +177,10 @@ function getLesOffresArriveeEntreprise(){
                        "jour"=>"vendredi",
                        "date"=>"permanent",
                         "heure"=>"8h",
-                     "ramassage"=> array(array("id"=>1,"lieu"=>"Métro Bobigny"),array("id"=>2,"lieu"=>"Bondy N3")),
-                       "depart"=>"Mairie de Bobigny",
+                    "depart"=>"domicile", 
+                     "ramassage1"=>"Métro Bobigny",
+                    "ramassage2"=>"Bondy N3",
+                       "lieu"=>"Mairie de Bobigny",
                     "nom"=>"Ahmad",
                        "prenom"=>"Louise",
                      "mail"=>"ahmad@gmail.com",
@@ -174,8 +192,8 @@ function getLesOffresArriveeEntreprise(){
     
     
 }
-function getOffreArriveeEntreprise($id){
-    $lesOffres = getLesOffresArriveeEntreprise();
+function getOffreArriveeLycee($id){
+    $lesOffres = getLesOffresArriveeLycee();
     $offre=array();
     foreach ($lesOffres as $uneOffre){
          if($uneOffre["id"]==$id)
@@ -194,16 +212,16 @@ function GetLesUsers(){
    return $tab;
 }
 
-function getMesOffresDepartEntreprise($id){
-    $tab = getLesOffresDepartEntreprise();
+function getMesOffresDepartLycee($id){
+    $tab = getLesOffresDepartLycee();
     $lesOffres = array();
     foreach($tab as $uneOffre)
         if($uneOffre['idchauffeur'] == $id)
                 $lesOffres[] = $uneOffre;
     return $lesOffres;    
 }
-function getMesOffresArriveeEntreprise($id){
-    $tab = getLesOffresArriveeEntreprise();
+function getMesOffresArriveeLycee($id){
+    $tab = getLesOffresArriveeLycee();
     $lesOffres = array();
     foreach($tab as $uneOffre)
         if($uneOffre['idchauffeur'] == $id)

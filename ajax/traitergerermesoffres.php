@@ -3,10 +3,12 @@ require_once '../util/fonctions.php';
 session_start();
 $id = $_SESSION['user']['id'];;
 $toutesMesOffres = array();
-$toutesMesOffres['departentreprise']= array();
-$toutesMesOffres['departentreprise'] = getMesOffresDepartEntreprise($id);
-$toutesMesOffres['arriveeentreprise']= array();
-$toutesMesOffres['arriveeentreprise']= getMesOffresArriveeEntreprise($id);
+$toutesMesOffres['departlycee']= array();
+$toutesMesOffres['departlycee'] = getMesOffresDepartLycee($id);
+$toutesMesOffres['arriveelycee']= array();
+$toutesMesOffres['arriveelycee']= getMesOffresArriveeLycee($id);
+/* A faire*/
+// $toutesMesOffres = getMesOffres($id) : retourne toutes les offres d'un chauffeur
 echo json_encode($toutesMesOffres);
 ?>
 

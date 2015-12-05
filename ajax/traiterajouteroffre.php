@@ -6,7 +6,7 @@
   $date = $_REQUEST['date'];
   $lieu = $_REQUEST['lieu'];
   $lesramassages = $_REQUEST['lesramassages'];
-   /* partie non traitée pour cette itération*/
+   /* A faire*/
    // $ok = enregistrerEnBase($typeoffre, $periodicite,$heureminute, $jour, $date,$lieu, $lesramassages);
    $ok = true;
    echo $ok;
