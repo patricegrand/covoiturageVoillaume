@@ -1,5 +1,6 @@
 
 $(function(){
+    window.user ="" ;
    $(document).on( "pageinit", function(e ) {
             var page = window.location.hash.substr(1);// récupère la partie après #
             if( page!="pageinscription" && page!=""){
@@ -30,13 +31,17 @@ $(function(){
                               // valorise les deux arguments passés à la fonction traiterconnexion
                                 "mdp" : mdp,        
                                 "login" : login },
-                                foncRetourConnexion );
+                                foncRetourConnexion,"json" );
                    });
      /* fonction JS qui sera exécutée après le retour de l'appel ajax précedent */
      // le paramètre data représente la donnée envoyée par le serveur
      // résultat de l'appel de la fonction retourConnexion.php
     function foncRetourConnexion(data){
             if(data.length != 0){
+               
+              
+                window.user = data;//
+               
                 $.mobile.changePage("#pageaccueil");
              }
              else{
@@ -232,6 +237,10 @@ $(function(){
                     $("input#" + id + ", label[for=" + id + "]").remove();
                }
             }
+             $("#btnAjouterOffre").click(function(){
+                 var adresse = window.user['adresse'];
+                 $("#pageajouteroffre #lieu").attr("value",adresse);
+             });
           /************************* page ajouter offre********************************************/
              
             $("#typeoffre").change(function(){
