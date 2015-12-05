@@ -238,7 +238,7 @@ $(function(){
                }
             }
              $("#btnAjouterOffre").click(function(){
-                 var adresse = window.user['adresse'];
+                 var adresse = window.user.adresse;
                  $("#pageajouteroffre #lieu").attr("value",adresse);
              });
           /************************* page ajouter offre********************************************/

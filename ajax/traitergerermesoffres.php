@@ -1,7 +1,7 @@
 <?php
 require_once '../util/fonctions.php';
 session_start();
-$id = $_SESSION['id'];
+$id = $_SESSION['user']['id'];;
 $toutesMesOffres = array();
 $toutesMesOffres['departentreprise']= array();
 $toutesMesOffres['departentreprise'] = getMesOffresDepartEntreprise($id);

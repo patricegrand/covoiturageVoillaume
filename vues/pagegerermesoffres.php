@@ -4,11 +4,11 @@
 include "vues/entetepageavecboutonretour.html";
 ?>
      <legend  >Départ de Voillaume</legend>
-        <div data-role="controlgroup"id="listdepart" data-theme="b">
+        <div data-role="controlgroup" id="listdepart" data-theme="b">
 
         </div>
      <legend>Arrivée à Voillaume</legend>   
-        <div data-role="controlgroup"id="listarrivee"> 
+        <div data-role="controlgroup" id="listarrivee"> 
               
             
         </div>   
@@ -17,7 +17,7 @@ include "vues/entetepageavecboutonretour.html";
                                                             data-mini="true">Supprimer</a>
        </p>
        <p>
-            <a href="#pageajouteroffre" data-role="button" id="btnAjouter" data-icon="plus" 
+            <a href="#pageajouteroffre" data-role="button" id="btnAjouterOffre" data-icon="plus" 
                         data-inline="true" data-mini="true">Ajouter une offre</a>
        </p>     
   </div><!-- /fin content -->    
