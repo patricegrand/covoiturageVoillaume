@@ -61,8 +61,9 @@ class PdoCovoiturage{
              
 		return $lesLignes;
 	}
-        public function getLesOffresDepartDomicile(){
-               $req = "select * from pgcovoffre WHERE depart = 'domicile' order by numJour";
+        public function getLesOffresArriveeLycee(){
+               $req = "select O.*, nom, prenom from pgcovoffre O INNER JOIN pgcovchauffeur C ON C.id = O.idChauffeur WHERE depart = 'domicile' order by numJour";
+           
                     //var_dump($req);
                error_log($req);
                $rs = self::$monPdo->prepare($req);
@@ -71,9 +72,9 @@ class PdoCovoiturage{
                $lesLignes = $rs->fetchAll();
                return $lesLignes;
         }
-        function getLesOffresDepartEntreprise()
+        function getLesOffresDepartLycee()
         {
-            $req = "select dateOffre, heure, jour, lieu  from pgcovoffre where depart ='entreprise' order by numJour";
+            $req = "select dateOffre, heure, jour, lieu,idChauffeur,nom,prenom from pgcovoffre O INNER JOIN pgcovchauffeur C ON C.id = O.idChauffeur where depart ='entreprise' order by numJour";
             error_log($req);
             $rs = self::$monPdo->prepare($req);
             $rs = self::$monPdo->query($req);
