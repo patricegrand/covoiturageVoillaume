@@ -119,11 +119,11 @@ $(function(){
                     html = "<li id=" + lesOffres[i]['id']+" ><a href =#pageoffre >";
                     $("#pageoffresoffertes #lstoffres" + n).append(html);
                     if(lesOffres[i]['depart'] == "domicile"){
-                        html = lesOffres[i]['date'] + " à "+ lesOffres[i]['heure']+" départ de <br>"+ lesOffres[i]['lieu']+"</a></li>";
+                        html = lesOffres[i]['dateOffre'] + " à "+ lesOffres[i]['heure']+" départ de <br>"+ lesOffres[i]['lieu']+"</a></li>";
                         $("#pageoffresoffertes #"+lesOffres[i]['id']).attr("title","arriveelycee");  
                     }
                     else{
-                        html = lesOffres[i]['date'] + " à "+ lesOffres[i]['heure']+" arrivée à <br>"+ lesOffres[i]['lieu']+"</a></li>";
+                        html = lesOffres[i]['dateOffre'] + " à "+ lesOffres[i]['heure']+" arrivée à <br>"+ lesOffres[i]['lieu']+"</a></li>";
                        $("#pageoffresoffertes #"+lesOffres[i]['id']).attr("title","arriveedomicile"); 
                     }
                     $("#pageoffresoffertes li#"+lesOffres[i]['id']+">a").append(html);
