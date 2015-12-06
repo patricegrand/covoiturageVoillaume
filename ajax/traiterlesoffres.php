@@ -2,6 +2,7 @@
   require_once '../util/fonctions.php';
   $type = $_REQUEST["typeoffre"];
   $lesOffres = array();
+  $pdo=PdoCovoiturage::getPdo();
   if($type=="arriveelycee")
       /* A faire */
         $lesOffres = getLesOffresArriveeLycee(); // retourne les offres d'arrivee au lycée avec un join sur le chauffeur
