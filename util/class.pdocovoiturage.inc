@@ -17,7 +17,7 @@
 
 class PdoCovoiturage{   		
       	private static $serveur='mysql:host=localhost';
-      	private static $bdd='dbname=bd_covoiturage';   		
+      	private static $bdd='dbname=bd_covoiturageV2';   		
       	private static $user='root' ;    		
       	private static $mdp='' ;		
 	private static $monPdo;
@@ -54,7 +54,7 @@ class PdoCovoiturage{
  * @return le tableau associatif 
 */
 	public function getLesChauffeurs(){
-		$req = "select id, nom, prenom, tel, mail, lieu from pgcovchauffeur";
+		$req = "select id, nom, prenom, tel, mail, adresse from pgcovchauffeur";
                 var_dump($req);
 		$rs = self::$monPdo->query($req);
 		$lesLignes = $rs->fetchAll();
@@ -97,14 +97,63 @@ class PdoCovoiturage{
         }
         public function login($user,$mdp){
             
-            $req = "select * from pgcovchauffeur where nomUser= '$user' and mdp ='$mdp' ";
+            $req = "select * from pgcovchauffeur where login= '$user' and mdp ='$mdp' ";
             error_log($req);
             $rs = self::$monPdo->query($req);
 	    $laLigne = $rs->fetch();
             error_log($laLigne);
             return $laLigne;
         }
-        public function supprimerOffre($args){
+        public function supprimerOffre($mdp,$idOffre){
+                $req = "select mdp from pgcovchauffeur,pgcovoffre where pgcovoffre.idChauffeur = pgcovchauffeur.id "; 
+                $req .= "  and pgcovoffre.id = '".$idOffre."'";
+
+                $rs = self::$monPdo->query($req);
+                $laLigne = $rs->fetch();
+                if($laLigne['mdp'] == $mdp){
+                    $ret = true;
+                    $req = "delete from pgcovoffre where pgcovoffre.id =".$idOffre;
+                    if(self::$monPdo->exec($req)==0)
+                        throw new Exception("Aucune ligne supprimée");
+                }
+                else 
+                    throw new Exception("Vous n'avez pas les droits");
+                
+                
+            
+         
+        }
+        
+        public function ajouterOffre($idChauffeur,$jour,$heure,$lieu,$depart,$dateOffre,$ramassage1,$ramassage2){
+            
+            $req ="INSERT INTO pgcovoffre (dateOffre, heure, jour, lieu, depart,idChauffeur,ramassage1,ramassage2) VALUES ";
+            $req.= "('" .$dateOffre. "', '" .$heure. "','" .$jour. "','" .$lieu. "','" .$depart. "','". $idChauffeur. "',";
+            if(isset($ramassage1)){
+                $req.= "'" .$ramassage1. "',";
+             }
+            else 
+                $req.= ",";
+            
+            if(isset($ramassage2)){
+                $req.= "'" .$ramassage2. "'";
+             }
+            $req.= ")";
+         self::$monPdo->exec($req);
+        
+                  //    throw new Exception("Offre non ajoutée");
+       
+        
+        }
+        public function ajouterChauffeur($nom,$prenom,$adresse,$tel,$mail, $user, $mdp){
+            
+            $req = "insert into pgcovchauffeur(nom, prenom,adresse, tel, mail,login, mdp)  " ;
+            $req.= "values('".$nom."','".$prenom."','".$adresse."','".$tel."','".$mail."','".$user."','".$mdp."')";
+             self::$monPdo->exec($req);
+             error_log($req,3,'/homez.218/grandpat/www/php.log');
+             
+        }
+       /* 
+        * public function supprimerOffre($args){
            
                 $mdp = $args['mdp'];
                 $idOffre = $args['offre'];
@@ -126,7 +175,7 @@ class PdoCovoiturage{
             
          
         }
-        public function ajouterOffre($args){
+        * public function ajouterOffre($args){
             
             $idChauffeur = $args['idChauffeur'];
             $jour = $args['jour'];
@@ -167,6 +216,7 @@ class PdoCovoiturage{
              error_log($req,3,'/homez.218/grandpat/www/php.log');
              
         }
+        */
         
 }
 ?>
