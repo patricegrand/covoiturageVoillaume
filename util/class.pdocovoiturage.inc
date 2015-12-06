@@ -95,7 +95,7 @@ class PdoCovoiturage{
         }
         function getMesOffresDepartLycee($id)
         {
-            $req = "select dateOffre, heure, jour, lieu,idChauffeur,nom,prenom from pgcovoffre O INNER JOIN pgcovchauffeur C ON C.id = O.idChauffeur where depart ='entreprise' and O.id=".$id." order by numJour";
+            $req = "select O.id,dateOffre, heure, jour, lieu,idChauffeur,nom,prenom from pgcovoffre O INNER JOIN pgcovchauffeur C ON C.id = O.idChauffeur where depart ='entreprise' and O.id=".$id." order by numJour";
             error_log($req);
             $rs = self::$monPdo->prepare($req);
             $rs = self::$monPdo->query($req);
