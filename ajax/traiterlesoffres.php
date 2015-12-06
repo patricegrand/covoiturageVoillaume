@@ -4,11 +4,9 @@
   $lesOffres = array();
   $pdo=PdoCovoiturage::getPdo();
   if($type=="arriveelycee")
-      /* A faire */
-        $lesOffres = getLesOffresArriveeLycee(); // retourne les offres d'arrivee au lycée avec un join sur le chauffeur
+          $lesOffres = $pdo->getLesOffresArriveeLycee();
    else 
-        /* A faire */
-        $lesOffres = getLesOffresDepartLycee(); // retourne les offres de départ avec un join sur le chauffeur
+        $lesOffres = $pdo->getLesOffresDepartLycee();
   echo json_encode($lesOffres);
 ?>
 
