@@ -1,0 +1,114 @@
+-- phpMyAdmin SQL Dump
+-- version 4.1.14
+-- http://www.phpmyadmin.net
+--
+-- Client :  127.0.0.1
+-- Généré le :  Mar 08 Décembre 2015 à 16:10
+-- Version du serveur :  5.6.17
+-- Version de PHP :  5.5.12
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+--
+-- Base de données :  `bd_covoituragev2`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `pgcovchauffeur`
+--
+
+CREATE TABLE IF NOT EXISTS `pgcovchauffeur` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nom` varchar(30) DEFAULT NULL,
+  `prenom` varchar(30) DEFAULT NULL,
+  `adresse` varchar(30) DEFAULT NULL,
+  `tel` varchar(15) DEFAULT NULL,
+  `mail` varchar(30) DEFAULT NULL,
+  `login` varchar(20) DEFAULT NULL,
+  `mdp` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=35 ;
+
+--
+-- Contenu de la table `pgcovchauffeur`
+--
+
+INSERT INTO `pgcovchauffeur` (`id`, `nom`, `prenom`, `adresse`, `tel`, `mail`, `login`, `mdp`) VALUES
+(30, 'Aribi', 'André', 'Porte des Lilas', '0698789856', 'aribi@gmail.com', 'aribiA', 'aaaa'),
+(31, 'Benamou', 'Bachir', 'Métro Belleville', '0655789832', 'benamou@gmail.com', 'benamouB', 'bbbb'),
+(32, 'Chaudron', 'Claude', 'gare de Noisy-le-Sec', '0622289856', 'chaudron@gmail.com', 'chaudronC', 'cccc'),
+(33, 'Duval', 'Dominique', 'Porte de Montreuil', '0698789147', 'duval@gmail.com', 'duvalD', 'dddd'),
+(34, 'Emione', 'Evelyne', 'Métro Mairie des Lilas', '0692154856', 'emione@gmail.com', 'emioneE', 'eeee');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `pgcovoffre`
+--
+
+CREATE TABLE IF NOT EXISTS `pgcovoffre` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `dateOffre` varchar(10) DEFAULT NULL,
+  `heure` varchar(10) NOT NULL,
+  `jour` varchar(10) NOT NULL,
+  `numJour` int(11) NOT NULL,
+  `lieu` varchar(30) NOT NULL,
+  `depart` varchar(20) DEFAULT 'entreprise',
+  `ramassage1` varchar(50) DEFAULT NULL,
+  `ramassage2` varchar(50) DEFAULT NULL,
+  `idChauffeur` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `offre_ibfk_1` (`idChauffeur`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=53 ;
+
+--
+-- Contenu de la table `pgcovoffre`
+--
+
+INSERT INTO `pgcovoffre` (`id`, `dateOffre`, `heure`, `jour`, `numJour`, `lieu`, `depart`, `ramassage1`, `ramassage2`, `idChauffeur`) VALUES
+(30, '05/04/2015', '9h', 'lundi', 1, 'Métro Belleville', 'domicile', 'Métro Porte des Lilas', 'Place Carnot Romainville', 31),
+(31, '12/04/2015', '9h', 'mardi', 2, 'Métro Belleville', 'domicile', 'Métro Porte des Lilas', 'Place Carnot Romainville', 31),
+(32, '15/05/2015', '9h', 'vendredi', 5, 'Métro Belleville', 'domicile', 'Métro Porte des Lilas', 'Place Carnot Romainville', 31),
+(33, 'permanent', '9h', 'jeudi', 4, 'Métro Belleville', 'domicile', 'Métro Porte des Lilas', 'Place Carnot Romainville', 31),
+(34, '5/06/2015', '17h', 'vendredi', 5, 'Métro Belleville', 'entreprise', NULL, NULL, 31),
+(35, 'permanent', '16h', 'jeudi', 4, 'Métro Belleville', 'entreprise', NULL, NULL, 31),
+(36, '25/06/2015', '17h', 'vendredi', 5, 'Porte des Lilas', 'entreprise', NULL, NULL, 30),
+(37, 'permanent', '16h30', 'mardi', 2, 'Porte des Lilas', 'entreprise', NULL, NULL, 30),
+(38, '08/06/2015', '17h', 'lundi', 1, 'Porte des Lilas', 'entreprise', NULL, NULL, 30),
+(39, 'permanent', '9h30', 'mercredi', 3, 'Porte des Lilas', 'domicile', 'Porte de Bagnolet', NULL, 30),
+(40, 'permanent', '8h30', 'mercredi', 3, 'gare de Noisy-leSec', 'domicile', 'Bondy N3', 'Mairie de Pavillon-Sous-Bois', 32),
+(41, 'permanent', '8h30', 'mercredi', 3, 'gare de Noisy-le-Sec', 'domicile', 'Bondy N3', 'Mairie de Pavillon-Sous-Bois', 32),
+(42, '23/05/2015', '8h30', 'mercredi', 3, 'gare de Noisy-le-Sec', 'domicile', 'Bondy N3', 'Mairie de Pavillon-Sous-Bois', 32),
+(43, '21/06/2015', '17h30', 'jeudi', 4, 'gare de Noisy-le-Sec', 'entreprise', NULL, NULL, 32),
+(44, '23/05/2015', '18h30', 'vendredi', 5, 'gare de Noisy-le-Sec', 'entreprise', NULL, NULL, 32),
+(45, '18/06/2015', '8h30', 'mercredi', 3, 'Porte de Montreuil', 'domicile', 'Mairie de Montreuil', NULL, 33),
+(46, 'permanent', '8h30', 'jeudi', 4, 'Porte de Montreuil', 'domicile', 'Mairie de Montreuil', NULL, 33),
+(47, 'permanent', '18h30', 'mercredi', 3, 'Porte de Montreuil', 'entreprise', NULL, NULL, 33),
+(48, 'permanent', '18h30', 'vendredi', 5, 'Porte de Montreuil', 'entreprise', NULL, NULL, 33),
+(49, 'permanent', '18h30', 'mercredi', 3, 'Métro Mairie des Lilas', 'entreprise', NULL, NULL, 34),
+(50, 'permanent', '18h30', 'lundi', 1, 'Métro Mairie des Lilas', 'entreprise', NULL, NULL, 34),
+(51, 'permanent', '8h30', 'lundi', 1, 'Métro Mairie des Lilas', 'domicile', 'Place Carnot Romainville', NULL, 34),
+(52, 'permanent', '8h30', 'mardi', 2, 'Métro Mairie des Lilas', 'domicile', 'Place Carnot Romainville', NULL, 34);
+
+--
+-- Contraintes pour les tables exportées
+--
+
+--
+-- Contraintes pour la table `pgcovoffre`
+--
+ALTER TABLE `pgcovoffre`
+  ADD CONSTRAINT `offre_ibfk_1` FOREIGN KEY (`idChauffeur`) REFERENCES `pgcovchauffeur` (`id`);
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
